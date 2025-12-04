@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>مراجعة تفاعلية للصف السابع: خصائص الكائنات الحية | ذكور الفاروق الأساسية العليا</title>
+  <meta name="description" content="مراجعة تفاعلية لخصائص الكائنات الحية لطلبة الصف السابع بمدرسة ذكور الفاروق الأساسية العليا، بإشراف وزارة التربية والتعليم الفلسطينية." />
+  <meta name="author" content="وزارة التربية والتعليم الفلسطينية — مدرسة ذكور الفاروق الأساسية العليا، بيت لقيا — مديرية رام الله والبيرة" />
+  <style>
+    :root {
+      --primary:#2563eb; --accent:#10b981; --danger:#ef4444; --warn:#f59e0b;
+      --bg:#f8fafc; --text:#0f172a; --muted:#475569; --card:#ffffff;
+      --border:#e5e7eb;
+    }
+    *{box-sizing:border-box}
+    html, body { height: 100%; }
+    body{
+      font-family:"Tahoma","Segoe UI",system-ui,sans-serif;
+      background:var(--bg); color:var(--text); margin:0; line-height:1.65;
+    }
+    header{
+      background:linear-gradient(135deg,var(--primary),#7c3aed);
+      color:#fff; padding:24px 16px; text-align:center
+    }
+    header h1{margin:0 0 6px;font-size:22px}
+    header p{margin:0;font-size:13px;opacity:.95}
+    .container{max-width:1100px;margin:20px auto;padding:0 12px 40px}
+
+    /* sections */
+    .section{
+      background:var(--card); border:1px solid var(--border); border-radius:16px;
+      padding:16px; margin-bottom:18px; box-shadow:0 2px 10px rgba(0,0,0,.05)
+    }
+    .section h2{font-size:18px;margin:0 0 8px}
+    .sub{font-size:13px;color:var(--muted);margin:-4px 0 10px}
+
+    /* flashcards */
+    .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+    .card{border-radius:14px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,.08);border:1px solid var(--border);background:#fff}
+    .card-head{padding:12px 14px;color:#fff;font-weight:700}
+    .card-body{padding:12px 14px}
+    .pill{display:inline-block;background:#e0e7ff;color:#3730a3;padding:2px 8px;border-radius:999px;font-size:12px;margin-right:6px}
+    .list{margin:8px 0 0;padding-inline-start:18px}
+    .list li{margin:4px 0}
+
+    /* color themes */
+    .theme-nut .card-head{background:#22c55e}
+    .theme-grow .card-head{background:#3b82f6}
+    .theme-move .card-head{background:#f97316}
+    .theme-exc .card-head{background:#ef4444}
+    .theme-resp .card-head{background:#facc15;color:#111827}
+    .theme-repr .card-head{background:#a855f7}
+    .theme-meta .card-head{background:#6b7280}
+    .theme-breath .card-head{background:#1e40af}
+    .theme-photo .card-head{background:#16a34a}
+
+    /* questions */
+    .q{border:1px dashed var(--border);border-radius:12px;padding:12px;margin-bottom:10px;background:#fafafa}
+    .q label{display:block;font-weight:700;margin-bottom:6px}
+    input[type="text"], textarea{
+      width:100%;padding:10px;border:1px solid #d1d5db;border-radius:10px;font-size:14px;background:#fff
+    }
+    textarea{resize:vertical}
+    .hint{font-size:12px;color:#6b7280;margin-top:4px;display:none}
+    .fb{margin-top:8px;font-size:13px;padding:8px;border-radius:10px;display:none}
+    .fb.ok{background:#f0fdf4;border:1px solid #86efac;color:#166534}
+    .fb.no{background:#fef2f2;border:1px solid #fecaca;color:#7f1d1d}
+    .ctl{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+    button{border:none;border-radius:10px;padding:9px 14px;font-size:14px;cursor:pointer}
+    .primary{background:var(--primary);color:#fff}
+    .ghost{background:#fff;border:1px solid #cbd5e1;color:#0f172a}
+    .success{background:var(--accent);color:#fff}
+    .danger{background:var(--danger);color:#fff}
+    .warn{background:var(--warn);color:#fff}
+
+    /* drag & drop */
+    .drag-wrap{display:flex;gap:16px;flex-wrap:wrap}
+    .drag-pool,.drop-area{flex:1;min-width:280px}
+    .item{padding:10px;background:#e0f2fe;border:1px solid #93c5fd;border-radius:10px;margin:6px 0;cursor:grab}
+    .zone{min-height:70px;border:2px dashed #d1d5db;border-radius:12px;padding:10px;margin:8px 0}
+    .zone.ok{border-color:#86efac;background:#f0fdf4}
+    .zone.no{border-color:#fecaca;background:#fef2f2}
+
+    /* score + report */
+    .score{background:#ecfeff;border:1px solid #a5f3fc;color:#0e7490;padding:12px;border-radius:12px;margin-top:10px;display:none}
+    .report{background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;padding:12px;border-radius:12px;margin-top:10px;display:none}
+    .credits{text-align:center;font-size:12px;color:#64748b;margin-top:24px}
+
+    /* content protection */
+    html, body, .container, .section, .cards, .card, .q, .item, .zone {
+      -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none;
+    }
+    img{pointer-events:none}
+
+    /* refined watermark */
+    .wm-grid {
+      position: fixed; inset: 0; z-index: 1; pointer-events:none;
+      background-size: 360px 240px;
+      background-image:
+        repeating-linear-gradient(135deg, rgba(17,24,39,0.06) 0px, rgba(17,24,39,0.06) 1px, transparent 1px, transparent 60px);
+      opacity: 0.16;
+      mix-blend-mode: multiply;
+    }
+    .wm-text {
+      position: fixed; inset: 0; z-index: 2; pointer-events:none;
+      color:#0f172a; opacity:0.10; font-weight:700; font-size: 20px; line-height: 1.4;
+      transform: rotate(-18deg);
+      display:flex; align-items:center; justify-content:center; text-align:center; white-space: pre-wrap;
+    }
+    header, .container, .credits { position: relative; z-index: 3; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .wm-grid { opacity: 0.12; }
+      .wm-text { opacity: 0.08; }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>مراجعة تفاعلية: خصائص الكائنات الحية – الصف السابع</h1>
+  <p>وزارة التربية والتعليم الفلسطينية — ذكور الفاروق الأساسية العليا، بيت لقيا — مديرية رام الله والبيرة</p>
+</header>
+
+<div class="container" id="appRoot">
+  <!-- بطاقات تعليمية شاملة -->
+  <div class="section">
+    <h2>البطاقات التعليمية الشاملة</h2>
+    <p class="sub">اقرأ البطاقات ثم جرّب الأنشطة. كل بطاقة تحتوي تعريفًا، أمثلة، أهمية، ومعادلات عند الحاجة.</p>
+
+    <div class="cards">
+      <!-- التغذية -->
+      <div class="card theme-nut">
+        <div class="card-head">🔬 التغذية <span class="pill">الذاتية وغير الذاتية</span></div>
+        <div class="card-body">
+          <b>التعريف:</b> الحصول على الغذاء لبناء الجسم وإنتاج الطاقة.<br/>
+          <b>أنواع:</b> ذاتية (نباتات – بناء ضوئي)، غير ذاتية (إنسان/حيوانات)، مترممة (فطريات تحلل البقايا)، متطفلة (قمل/ديدان/بعوض).<br/>
+          <b>معادلة البناء الضوئي:</b> ماء + ثاني أكسيد الكربون + ضوء + كلوروفيل → سكريات + أكسجين.<br/>
+          <b>أهمية:</b> إنتاج الغذاء والأكسجين واستمرار دورة الحياة.
+        </div>
+      </div>
+
+      <!-- النمو -->
+      <div class="card theme-grow">
+        <div class="card-head">🌱 النمو <span class="pill">الخلية والانقسام</span></div>
+        <div class="card-body">
+          <b>التعريف:</b> زيادة وتغير في الحجم والكتلة ووظائف الجسم.<br/>
+          <b>المسؤول:</b> الخلية عبر الانقسام الخلوي.<br/>
+          <b>المراحل:</b> الطفولة (0–6)، المدرسة (6–12)، المراهقة (12–20)، الشباب (20–45)، الشيخوخة (45+).<br/>
+          <b>أهمية:</b> تطوير الوظائف، اكتساب المهارات، ظهور صفات جنسية ثانوية.
+        </div>
+      </div>
+
+      <!-- الحركة -->
+      <div class="card theme-move">
+        <div class="card-head">🏃‍♂️ الحركة <span class="pill">انتقالية/موضعية</span></div>
+        <div class="card-body">
+          <b>التعريف:</b> التغير في الموضع أو المكان.<br/>
+          <b>أنواع:</b> انتقالية (الجسم كله)، موضعية (جزء من الجسم: القلب/الأهداب).<br/>
+          <b>أمثلة دقيقة:</b> الأميبا (أقدام كاذبة)، الكلاميدوموناس/اليوجلينا (أسواط)، الباراميسيوم (أهداب).
+        </div>
+      </div>
+
+      <!-- الإخراج -->
+      <div class="card theme-exc">
+        <div class="card-head">🚽 الإخراج <span class="pill">الاتزان الداخلي</span></div>
+        <div class="card-body">
+          <b>التعريف:</b> التخلص من فضلات الأيض للحفاظ على الاتزان.<br/>
+          <b>في الحيوانات:</b> بول (يوريا)، عرق، ثاني أكسيد الكربون، فضلات صلبة.<br/>
+          <b>في النباتات:</b> النتح عبر الأوراق، تخزين الفضلات في الجذور.
+        </div>
+      </div>
+
+      <!-- الاستجابة -->
+      <div class="card theme-resp">
+        <div class="card-head">⚡ الاستجابة <span class="pill">مؤثرات داخلية/خارجية</span></div>
+        <div class="card-body">
+          <b>التعريف:</b> رد فعل للتكيف مع المؤثرات.<br/>
+          <b>المؤثرات:</b> داخلية (جوع/عطش)، خارجية (ضوء/حرارة/رائحة).<br/>
+          <b>الأنواع:</b> سريعة (إنسان/حيوان)، بطيئة (نبات: انتحاء ضوئي/مائي).<br/>
+          <b>أمثلة:</b> رفع القدم عند الضرب؛ ميل دوار الشمس للضوء.
+        </div>
+      </div>
+
+      <!-- التكاثر -->
+      <div class="card theme-repr">
+        <div class="card-head">👶 التكاثر <span class="pill">جنسي/لاجنسي</span></div>
+        <div class="card-body">
+          <b>التعريف:</b> إنتاج أفراد جديدة لاستمرار النوع.<br/>
+          <b>جنسي:</b> ذكر + أنثى (إنسان، حمام، نباتات زهرية).<br/>
+          <b>لاجنسي:</b> انشطار (أميبا/بكتيريا)، تبرعم (خميرة)، تجزئة (نجم البحر)، خضري (عقل/فسائل/تطعيم).
+        </div>
+      </div>
+
+      <!-- الأيض -->
+      <div class="card theme-meta">
+        <div class="card-head">🔋 الأيض <span class="pill">بناء وهدم</span></div>
+        <div class="card-body">
+          <b>التعريف:</b> تفاعلات كيميائية مستمرة ضرورية للتغذية والنمو والطاقة.<br/>
+          <b>البناء:</b> من بسيط إلى معقد، يحتاج طاقة (مثل البناء الضوئي).<br/>
+          <b>الهدم:</b> من معقد إلى بسيط، ينتج طاقة (مثل التنفس).
+        </div>
+      </div>
+
+      <!-- التنفس -->
+      <div class="card theme-breath">
+        <div class="card-head">🌬️ التنفس <span class="pill">هوائي/لاهوائي</span></div>
+        <div class="card-body">
+          <b>هوائي:</b> جلوكوز + أكسجين → ثاني أكسيد الكربون + ماء + طاقة.<br/>
+          <b>لاهوائي (تخمر):</b> جلوكوز → ثاني أكسيد الكربون + كحول + طاقة (مثل الخميرة).
+        </div>
+      </div>
+
+      <!-- البناء الضوئي -->
+      <div class="card theme-photo">
+        <div class="card-head">☀️ البناء الضوئي <span class="pill">المعادلة الأساسية</span></div>
+        <div class="card-body">
+          <b>المعادلة:</b> ماء + ثاني أكسيد الكربون + ضوء + كلوروفيل → سكريات + أكسجين.<br/>
+          <b>أهمية:</b> مصدر الغذاء والأكسجين على الأرض.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- أنشطة تفاعلية للصف السابع -->
+  <div class="section">
+    <h2>أنشطة تفاعلية للصف السابع</h2>
+    <p class="sub">أجب عن الأنشطة، ثم اضغط "تحقق" للحصول على تغذية راجعة فورية.</p>
+
+    <!-- ترتيب مراحل النمو -->
+    <div class="q" data-type="order" data-keys="الطفولة,المدرسة,المراهقة,الشباب,الشيخوخة">
+      <label>نشاط 1: رتب مراحل النمو عند الإنسان</label>
+      <input type="text" placeholder="اكتب: الطفولة، المدرسة، المراهقة، الشباب، الشيخوخة" aria-label="ترتيب مراحل النمو">
+      <div class="ctl">
+        <button class="primary" onclick="checkOrder(this)">تحقق</button>
+        <button class="ghost" onclick="toggleHint(this)">تلميح</button>
+      </div>
+      <div class="fb ok">ترتيب صحيح؛ أحسنت.</div>
+      <div class="fb no">خطأ في الترتيب؛ راجع التسلسل العمري.</div>
+      <div class="hint">ابدأ بالطفولة وانتهِ بالشيخوخة.</div>
+    </div>
+
+    <!-- مكونات معادلة البناء الضوئي -->
+    <div class="q" data-type="set" data-keys="ماء,ثاني أكسيد الكربون,ضوء,كلوروفيل,سكريات,أكسجين">
+      <label>نشاط 2: اكتب مكونات معادلة البناء الضوئي كاملة</label>
+      <textarea rows="2" placeholder="اذكر: ماء، ثاني أكسيد الكربون، ضوء، كلوروفيل، سكريات، أكسجين" aria-label="مكونات البناء الضوئي"></textarea>
+      <div class="ctl">
+        <button class="primary" onclick="checkSet(this)">تحقق</button>
+        <button class="ghost" onclick="toggleHint(this)">تلميح</button>
+      </div>
+      <div class="fb ok">ممتاز: المعادلة كاملة.</div>
+      <div class="fb no">نقص عنصر أو أكثر (لا تنسَ الضوء والكلوروفيل).</div>
+      <div class="hint">أضف ضوء الشمس والكلوروفيل إلى الماء وCO₂.</div>
+    </div>
+
+    <!-- تصنيف أنماط التغذية -->
+    <div class="q" data-type="classify" data-keys="ذاتية:نبات,غير ذاتية:إنسان|حيوانات,مترممة:فطريات,متطفلة:قمل|ديدان|بعوض">
+      <label>نشاط 3: صنّف الأمثلة حسب نمط التغذية</label>
+      <textarea rows="3" placeholder="مثال: ذاتية: نبات؛ غير ذاتية: إنسان/حيوانات؛ مترممة: فطريات؛ متطفلة: قمل/ديدان/بعوض" aria-label="تصنيف التغذية"></textarea>
+      <div class="ctl">
+        <button class="primary" onclick="checkClassify(this)">تحقق</button>
+        <button class="ghost" onclick="toggleHint(this)">تلميح</button>
+      </div>
+      <div class="fb ok">تصنيف صحيح وواضح.</div>
+      <div class="fb no">احذر: الإنسان/البقرة ليسا مترممين.</div>
+      <div class="hint">المترمم يحلل البقايا؛ غير الذاتي يتناول كائنات أخرى.</div>
+    </div>
+
+    <!-- مطابقة Drag & Drop -->
+    <div class="q">
+      <label>نشاط 4: مطابقة Drag & Drop – اسحب التعريف إلى الخاصية المناسبة</label>
+      <div class="drag-wrap">
+        <div class="drag-pool" aria-label="عناصر السحب">
+          <div class="item" draggable="true" ondragstart="drag(event)" id="it1">عملية الحصول على الغذاء</div>
+          <div class="item" draggable="true" ondragstart="drag(event)" id="it2">زيادة الحجم والكتلة</div>
+          <div class="item" draggable="true" ondragstart="drag(event)" id="it3">التخلص من الفضلات</div>
+          <div class="item" draggable="true" ondragstart="drag(event)" id="it4">رد فعل للمؤثرات</div>
+          <div class="item" draggable="true" ondragstart="drag(event)" id="it5">إنتاج أفراد جديدة</div>
+          <div class="item" draggable="true" ondragstart="drag(event)" id="it6">تغير الموضع/المكان</div>
+        </div>
+        <div class="drop-area" aria-label="مناطق الإسقاط">
+          <div class="zone" data-target="التغذية" ondrop="drop(event)" ondragover="allowDrop(event)">🔬 التغذية</div>
+          <div class="zone" data-target="النمو" ondrop="drop(event)" ondragover="allowDrop(event)">🌱 النمو</div>
+          <div class="zone" data-target="الإخراج" ondrop="drop(event)" ondragover="allowDrop(event)">🚽 الإخراج</div>
+          <div class="zone" data-target="الاستجابة" ondrop="drop(event)" ondragover="allowDrop(event)">⚡ الاستجابة</div>
+          <div class="zone" data-target="التكاثر" ondrop="drop(event)" ondragover="allowDrop(event)">👶 التكاثر</div>
+          <div class="zone" data-target="الحركة" ondrop="drop(event)" ondragover="allowDrop(event)">🏃‍♂️ الحركة</div>
+        </div>
+      </div>
+      <div class="ctl">
+        <button class="primary" onclick="evaluateDrag()">تحقق المطابقة</button>
+        <button class="ghost" onclick="resetDrag()">إعادة النشاط</button>
+      </div>
+      <div class="fb ok" id="drag-ok">مطابقة صحيحة؛ أحسنت.</div>
+      <div class="fb no" id="drag-no">يوجد عدم تطابق؛ راجع التعريفات.</div>
+    </div>
+  </div>
+
+  <!-- اختبار قصير وتقييم شامل -->
+  <div class="section" id="quiz">
+    <h2>اختبار قصير: تقييم المهارات</h2>
+    <p class="sub">تغذية راجعة فورية، درجة تقريبية، وتقرير نقاط القوة والضعف مع رصد النسخ/اللصق.</p>
+
+    <div class="q" data-points="3" data-type="text" data-keywords="ماء,ثاني أكسيد الكربون,ضوء,كلوروفيل,سكريات,أكسجين">
+      <label>1) اكتب معادلة البناء الضوئي كاملة</label>
+      <textarea rows="3" placeholder="ماء + ثاني أكسيد الكربون + ضوء + كلوروفيل → سكريات + أكسجين"></textarea>
+      <div class="fb ok">صحيح: العناصر الأساسية مكتملة.</div>
+      <div class="fb no">أكمل العناصر: ماء، CO₂، ضوء، كلوروفيل، سكريات، أكسجين.</div>
+    </div>
+
+    <div class="q" data-points="3" data-type="text" data-keywords="جلوكوز,أكسجين,ثاني أكسيد الكربون,ماء,طاقة">
+      <label>2) اكتب معادلة التنفس الهوائي</label>
+      <textarea rows="3" placeholder="جلوكوز + أكسجين → ثاني أكسيد الكربون + ماء + طاقة"></textarea>
+      <div class="fb ok">ممتاز: صياغة صحيحة.</div>
+      <div class="fb no">اذكر الجلوكوز والأكسجين والنواتج (CO₂، ماء، طاقة).</div>
+    </div>
+
+    <div class="q" data-points="2" data-type="text" data-keywords="غير ذاتية,مترممة,تحلل البقايا,تتناول كائنات أخرى,فطريات,أمثلة">
+      <label>3) فرّق بين غير ذاتية التغذية والمترممة مع مثال</label>
+      <textarea rows="3" placeholder="غير ذاتية: تتناول كائنات أخرى؛ مترممة: تحلل بقايا (فطريات)."></textarea>
+      <div class="fb ok">تمييز صحيح وأمثلة مناسبة.</div>
+      <div class="fb no">لا تضع الإنسان/البقرة ضمن المترممين.</div>
+    </div>
+
+    <div class="q" data-points="2" data-type="text" data-keywords="تخمر,لاهوائي,ثاني أكسيد الكربون,كحول,فقاعات">
+      <label>4) فسّر ظهور الفقاعات في تجربة الخميرة</label>
+      <textarea rows="3" placeholder="بسبب التخمر اللاهوائي وإنتاج CO₂."></textarea>
+      <div class="fb ok">ربط علمي صحيح.</div>
+      <div class="fb no">اربط الفقاعات بـ CO₂ الناتج عن التخمر اللاهوائي.</div>
+    </div>
+
+    <div class="q" data-points="2" data-type="text" data-keywords="انتقالية,موضعية,القلب,الأهداب,أميبا,أسواط,أهداب">
+      <label>5) اذكر نوعي الحركة مع أمثلة</label>
+      <textarea rows="3" placeholder="انتقالية: الجسم كله؛ موضعية: القلب/الأهداب؛ أمثلة دقيقة: أميبا/يوجلينا/باراميسيوم."></textarea>
+      <div class="fb ok">أمثلة جيدة ومتوازنة.</div>
+      <div class="fb no">أضف مثالًا من الكائنات الدقيقة.</div>
+    </div>
+
+    <div class="q" data-points="3" data-type="text" data-keywords="داخلية,خارجية,ضوء,حرارة,جوع,انتحاء,سريعة,بطيئة">
+      <label>6) وضّح المؤثرات وأنواع الاستجابة مع مثال</label>
+      <textarea rows="3" placeholder="داخلية: جوع/عطش؛ خارجية: ضوء/حرارة؛ استجابة سريعة: إنسان؛ بطيئة: نبات (انتحاء ضوئي)."></textarea>
+      <div class="fb ok">تحليل واضح ومتكامل.</div>
+      <div class="fb no">أضف مثالًا لانتحاء النبات نحو الضوء.</div>
+    </div>
+
+    <div class="ctl">
+      <button class="primary" onclick="evaluate()">تقييم الإجابات</button>
+      <button class="ghost" onclick="showAllFeedback()">إظهار التغذية الراجعة</button>
+      <button class="danger" onclick="resetAll()">إعادة المحاولة</button>
+      <button class="warn" onclick="exportCSV()">تصدير النتائج (CSV)</button>
+    </div>
+
+    <div id="score" class="score" role="status"></div>
+    <div id="report" class="report"></div>
+  </div>
+
+  <div class="credits">
+    وزارة التربية والتعليم الفلسطينية — مدرسة ذكور الفاروق الأساسية العليا، بيت لقيا — مديرية رام الله والبيرة
+    <br>إعداد: الأستاذ عبد الله عبيد — مخصص لتدريب الصف السابع
+  </div>
+</div>
+
+<!-- refined watermark overlays -->
+<div class="wm-grid" aria-hidden="true"></div>
+<div class="wm-text" id="wm" aria-hidden="true">وزارة التربية والتعليم الفلسطينية • ذكور الفاروق الأساسية العليا — بيت لقيا • مديرية رام الله والبيرة • الصف السابع</div>
+
+<script>
+  // ===== Deadline (example: الأحد القادم الساعة 7:00 صباحًا) =====
+  // غيّر التاريخ حسب حاجتك: السنة، الشهر-1، اليوم، الساعة، الدقيقة
+  const deadline = new Date(2025, 11, 7, 7, 0, 0);
+
+  function checkDeadline() {
+    const now = new Date();
+    if (now >= deadline) {
+      document.body.innerHTML = `
+        <div style="text-align:center; padding:50px; font-family:Tahoma; color:#b91c1c;">
+          <h1>انتهى الموعد المحدد</h1>
+          <p>هذه الصفحة لم تعد متاحة بعد ${deadline.toLocaleString('ar-EG')}</p>
+          <p>وزارة التربية والتعليم الفلسطينية — مدرسة ذكور الفاروق الأساسية العليا، بيت لقيا — مديرية رام الله والبيرة</p>
+        </div>
+      `;
+    }
+  }
+  checkDeadline();
+  setInterval(checkDeadline, 60000);
+
+  // ===== Helpers =====
+  function normalize(str){
+    return (str||"").toLowerCase()
+      .replace(/[^\u0600-\u06FFa-z0-9\s]/g," ")
+      .replace(/\s+/g," ").trim();
+  }
+  function toggleHint(btn){
+    const q = btn.closest('.q');
+    const h = q.querySelector('.hint'); if(!h) return;
+    h.style.display = (h.style.display==='block' ? 'none' : 'block');
+  }
+  function showFB(q, ok){
+    const okEl=q.querySelector('.fb.ok'), noEl=q.querySelector('.fb.no');
+    if(ok){ okEl.style.display='block'; noEl.style.display='none' } else { noEl.style.display='block'; okEl.style.display='none' }
+  }
+
+  // ===== Activity checks =====
+  function checkOrder(btn){
+    const q = btn.closest('.q');
+    const keys = q.dataset.keys.split(',').map(s=>normalize(s));
+    const inp = q.querySelector('input[type="text"]').value;
+    const text = normalize(inp).replace(/،/g,',').replace(/->|→/g,',');
+    const parts = text.split(',').map(s=>normalize(s)).filter(Boolean);
+    const ok = JSON.stringify(parts) === JSON.stringify(keys);
+    showFB(q, ok);
+  }
+  function checkSet(btn){
+    const q = btn.closest('.q');
+    const keys = q.dataset.keys.split(',').map(k=>normalize(k));
+    const txt = normalize(q.querySelector('textarea').value);
+    const ok = keys.every(k => txt.includes(k));
+    showFB(q, ok);
+  }
+  function checkClassify(btn){
+    const q = btn.closest('.q');
+    const spec = q.dataset.keys.split(',');
+    const txt = normalize(q.querySelector('textarea').value);
+    let ok = true;
+    spec.forEach(pair=>{
+      const [cat, items] = pair.split(':');
+      const variants = items.split('|').map(v=>normalize(v));
+      const hasAny = variants.some(v=>txt.includes(v));
+      if(!txt.includes(normalize(cat)) || !hasAny) ok = false;
+    });
+    if(txt.includes('مترمم') && (txt.includes('انسان')||txt.includes('بقرة'))) ok = false;
+    showFB(q, ok);
+  }
+
+  // ===== Drag & Drop =====
+  const matchMap = {'it1':'التغذية','it2':'النمو','it3':'الإخراج','it4':'الاستجابة','it5':'التكاثر','it6':'الحركة'};
+  function allowDrop(e){ e.preventDefault() }
+  function drag(e){ e.dataTransfer.setData("text/plain", e.target.id) }
+  function drop(e){
+    e.preventDefault();
+    const id = e.dataTransfer.getData("text/plain");
+    const item = document.getElementById(id);
+    if(e.currentTarget.classList.contains('zone')){
+      e.currentTarget.appendChild(item);
+    }
+  }
+  function evaluateDrag(){
+    let ok = true;
+    document.querySelectorAll('.zone').forEach(zone=>{
+      const target = zone.dataset.target;
+      const shouldId = Object.keys(matchMap).find(k=>matchMap[k]===target);
+      const ids = Array.from(zone.querySelectorAll('.item')).map(x=>x.id);
+      const good = ids.includes(shouldId);
+      zone.classList.remove('ok','no'); zone.classList.add(good?'ok':'no');
+      if(!good) ok = false;
+    });
+    document.getElementById('drag-ok').style.display = ok ? 'block':'none';
+    document.getElementById('drag-no').style.display = ok ? 'none':'block';
+  }
+  function resetDrag(){
+    const pool = document.querySelector('.drag-pool');
+    document.querySelectorAll('.zone').forEach(z=>{
+      z.classList.remove('ok','no');
+      Array.from(z.querySelectorAll('.item')).forEach(it=>pool.appendChild(it));
+    });
+    document.getElementById('drag-ok').style.display='none';
+    document.getElementById('drag-no').style.display='none';
+  }
+
+  // ===== Quiz evaluation + paste detection + report =====
+  function evaluate(){
+    const qs = document.querySelectorAll("#quiz .q");
+    let total=0, earned=0; let strengths=[], weaknesses=[]; let pasteFlags=0;
+
+    qs.forEach(q=>{
+      const pts = parseFloat(q.dataset.points||'0'); total += pts;
+      const area = q.querySelector("textarea, input[type='text']");
+      const raw = area ? area.value : "";
+      const txt = normalize(raw);
+      const keyw = (q.dataset.keywords||"").split(',').map(k=>normalize(k)).filter(Boolean);
+
+      // paste detection heuristic (multi-signal)
+      const punctuationCount = (raw.match(/[→\-–—:،.,;]/g)||[]).length;
+      const punctuationRatio = punctuationCount / Math.max(raw.length,1);
+      const hasExactArrow = raw.includes('→');
+      const repeatedTerms = (txt.match(/(ماء|ثاني اك|كلوروفيل|سكريات|اكسجين|جلوكوز)/g)||[]).length;
+      const longCopy = raw.length > 120 && punctuationRatio > 0.04;
+      const copyLike = (hasExactArrow && repeatedTerms >= 2) || longCopy;
+
+      if(copyLike) pasteFlags++;
+
+      // keyword coverage scoring
+      let hits=0; keyw.forEach(k=>{ if(k && txt.includes(k)) hits++ });
+      const cov = keyw.length ? (hits/keyw.length) : 0;
+      const alloc = pts * cov;
+      if(hits>=1){ earned += alloc }
+
+      const okEl = q.querySelector('.fb.ok'), noEl = q.querySelector('.fb.no');
+      const ok = cov >= 0.7;
+      if(ok){ okEl.style.display='block'; noEl.style.display='none'; strengths.push(q.querySelector('label').textContent.trim()) }
+      else { noEl.style.display='block'; okEl.style.display='none'; weaknesses.push(q.querySelector('label').textContent.trim()) }
+    });
+
+    const scoreBox = document.getElementById("score");
+    scoreBox.style.display="block";
+    scoreBox.textContent=`نتيجتك التقريبية: ${earned.toFixed(1)} / ${total} علامة`;
+
+    const report = document.getElementById("report");
+    const pasteNote = pasteFlags>=2
+      ? "رُصدت مؤشرات على النسخ/اللصق. حاول صياغة الإجابات بأسلوبك الخاص."
+      : "لا توجد مؤشرات واضحة على النسخ/اللصق.";
+    report.innerHTML = `
+      <b>التقييم الشامل:</b><br/>
+      نقاط القوة:
+      <ul class="list">${strengths.map(s=>`<li>${s}</li>`).join("") || "<li>بحاجة لإبراز نقاط قوة عبر إجابات أدق.</li>"}</ul>
+      نقاط الضعف:
+      <ul class="list">${weaknesses.map(s=>`<li>${s}</li>`).join("") || "<li>لا توجد نقاط ضعف كبيرة؛ حافظ على هذا المستوى.</li>"}</ul>
+      <b>ملاحظة حول النسخ/اللصق:</b> ${pasteNote}
+    `;
+    report.style.display="block";
+  }
+  function showAllFeedback(){
+    document.querySelectorAll('#quiz .fb').forEach(f=>f.style.display='block');
+  }
+  function resetAll(){
+    document.querySelectorAll("textarea, input[type='text']").forEach(el=>el.value="");
+    document.querySelectorAll(".fb").forEach(f=>f.style.display='none');
+    document.querySelectorAll(".zone").forEach(z=>z.classList.remove('ok','no'));
+    document.getElementById("score").style.display='none';
+    document.getElementById("report").style.display='none';
+  }
+  function exportCSV(){
+    const rows = [["السؤال","الإجابة"]];
+    document.querySelectorAll("#quiz .q").forEach(q=>{
+      const label = q.querySelector("label").textContent.trim();
+      const area = q.querySelector("textarea, input[type='text']");
+      rows.push([label, area ? area.value.replace(/\n/g,' ') : ""]);
+    });
+    const csv = rows.map(r=>r.map(v=>`"${(v||"").replace(/"/g,'""')}"`).join(",")).join("\n");
+    const blob = new Blob([csv], {type:"text/csv;charset=utf-8;"});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a"); a.href=url; a.download="نتائج_الصف_السابع_خصائص_الكائنات.csv"; a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  // ===== Content protection (best effort) =====
+  document.addEventListener('contextmenu', e => e.preventDefault());
+  document.addEventListener('dragstart', e => e.preventDefault());
+
+  document.addEventListener('keydown', e => {
+    const ctrlOrCmd = e.ctrlKey || e.metaKey;
+    const key = e.key.toLowerCase();
+    const blocked = (
+      (ctrlOrCmd && ['c','x','v','s','p','u','a'].includes(key)) ||
+      (ctrlOrCmd && e.shiftKey && ['i','c','j'].includes(key)) ||
+      (key === 'f12') ||
+      (e.key === 'PrintScreen')
+    );
+    if(blocked){
+      e.preventDefault();
+      e.stopPropagation();
+      pulseWatermark();
+    }
+  });
+
+  ['copy','cut','paste'].forEach(evt => {
+    document.addEventListener(evt, e => {
+      e.preventDefault();
+      pulseWatermark();
+    });
+  });
+
+  // Attempt to clear clipboard on PrintScreen (not guaranteed)
+  document.addEventListener('keyup', async e => {
+    if (e.key === 'PrintScreen' && navigator.clipboard) {
+      try { await navigator.clipboard.writeText(''); pulseWatermark(); } catch (_) {}
+    }
+  });
+
+  // ===== Refined watermark text with timestamp =====
+  const wm = document.getElementById('wm');
+  function setWatermarkText(){
+    const now = new Date();
+    const stamp = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')} ${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}`;
+    wm.textContent = `وزارة التربية والتعليم الفلسطينية • ذكور الفاروق الأساسية العليا — بيت لقيا • مديرية رام الله والبيرة • الصف السابع • ${stamp}`;
+  }
+  setWatermarkText();
+  setInterval(setWatermarkText, 60 * 1000);
+
+  function pulseWatermark(){
+    wm.style.opacity = '0.14';
+    setTimeout(()=>{ wm.style.opacity = '0.10'; }, 700);
+  }
+
+  // Prevent iframe embedding (clickjacking)
+  if (window.top !== window.self) {
+    window.top.location = window.location.href;
+  }
+
+  // Enable drop handlers explicitly
+  document.querySelectorAll('.zone').forEach(z=>{
+    z.addEventListener('dragover', allowDrop);
+    z.addEventListener('drop', drop);
+  });
+</script>
+</body>
+</html>
