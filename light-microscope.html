@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>المجهر الضوئي | الصف السادس</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Cairo', sans-serif;
+      background: #f9fafb;
+      color: #0f172a;
+      user-select: none; /* منع التحديد */
+    }
+    header, footer {
+      background: linear-gradient(90deg, #22c55e, #3b82f6);
+      color: white;
+      padding: 12px 16px;
+      text-align: center;
+    }
+    header h1 { margin: 0; font-size: 20px; }
+    header p { margin: 4px 0 0; font-size: 14px; }
+    .container {
+      max-width: 960px;
+      margin: auto;
+      padding: 20px;
+    }
+    .section {
+      margin-bottom: 32px;
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+    .section h2 {
+      margin-top: 0;
+      font-size: 18px;
+      color: #2563eb;
+    }
+    img, iframe {
+      width: 100%;
+      border-radius: 12px;
+      margin-top: 12px;
+    }
+    .parts-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .part {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      padding: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .part:hover { background: #e0f2fe; }
+    .modal {
+      position: fixed;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      border: 2px solid #3b82f6;
+      border-radius: 12px;
+      padding: 16px;
+      width: 90%;
+      max-width: 500px;
+      z-index: 1000;
+      display: none;
+    }
+    .modal h3 { margin-top: 0; color: #1e40af; }
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 999;
+      display: none;
+    }
+    .close-btn {
+      margin-top: 12px;
+      background: #ef4444;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .law-card {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 12px;
+      padding: 16px;
+      margin-top: 16px;
+      color: #166534;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>وزارة التربية والتعليم الفلسطينية - مديرية رام الله والبيرة</h1>
+  <p>مدرسة ذكور الفاروق الأساسية العليا - بيت لقيا | إعداد المعلم: عبدالله عبيد | الصف السادس</p>
+</header>
+
+<div class="container">
+
+  <section class="section">
+    <h2>رحلة إلى عالم الكائنات الدقيقة</h2>
+    <img src="unnamed.png" alt="تمهيد بصري عن الكائنات الدقيقة" />
+  </section>
+
+  <section class="section">
+    <h2>أجزاء المجهر الضوئي</h2>
+    <div class="parts-list">
+      <div class="part" onclick="showPart('العدسة العينية')">العدسة العينية</div>
+      <div class="part" onclick="showPart('الأسطوانة')">الأسطوانة</div>
+      <div class="part" onclick="showPart('الذراع')">الذراع</div>
+      <div class="part" onclick="showPart('قرص تحريك العدسات الشيئية')">قرص تحريك العدسات الشيئية</div>
+      <div class="part" onclick="showPart('العدسات الشيئية')">العدسات الشيئية</div>
+      <div class="part" onclick="showPart('المنضدة')">المنضدة</div>
+      <div class="part" onclick="showPart('مثبت الشريحة')">مثبت الشريحة</div>
+      <div class="part" onclick="showPart('الضابطان الكبيران')">الضابطان الكبيران</div>
+      <div class="part" onclick="showPart('الضابطان الصغيران')">الضابطان الصغيران</div>
+      <div class="part" onclick="showPart('المكثف')">المكثف</div>
+      <div class="part" onclick="showPart('مصدر الضوء')">مصدر الضوء</div>
+      <div class="part" onclick="showPart('القاعدة')">القاعدة</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>قانون قوة التكبير</h2>
+    <div class="law-card">
+      <p><strong>قوة تكبير المجهر = قوة تكبير العدسة العينية × قوة تكبير العدسة الشيئية</strong></p>
+      <p>مثال: إذا كانت العدسة العينية 10× والعدسة الشيئية 40× فإن:</p>
+      <p><strong>القوة = 10 × 40 = 400 مرة</strong></p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>فيديو تعليمي: كيفية استخدام المجهر وفحص شريحة نباتية</h2>
+    <iframe 
+      width="100%" height="400"
+      src="https://www.youtube.com/embed/sYPaWFP6bwo"
+      title="كيفية استخدام المجهر الضوئي"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+  </section>
+
+</div>
+
+<footer>
+  © وزارة التربية والتعليم الفلسطينية - مدرسة ذكور الفاروق الأساسية العليا - إعداد: عبدالله عبيد | الصف السادس
+</footer>
+
+<!-- نافذة الوظيفة -->
+<div class="overlay" id="overlay" onclick="closeModal()"></div>
+<div class="modal" id="modal">
+  <h3 id="modalTitle">وظيفة الجزء</h3>
+  <p id="modalText">...</p>
+  <button class="close-btn" onclick="closeModal()">إغلاق</button>
+</div>
+
+<script>
+// بيانات الأجزاء
+const PARTS = {
+  "العدسة العينية": "العدسة التي ننظر منها لنرى العينة مكبّرة (غالبًا 10×).",
+  "الأسطوانة": "أنبوب يصل العدسة العينية بالعدسات الشيئية ويحافظ على المسافة بينها.",
+  "الذراع": "جزء يحمل المجهر ويدعمه أثناء النقل والاستخدام.",
+  "قرص تحريك العدسات الشيئية": "قرص دوّار يبدّل بين العدسات الشيئية لتغيير قوة التكبير.",
+  "العدسات الشيئية": "مجموعة عدسات بتكبيرات مختلفة مثل 4×، 10×، 40×.",
+  "المنضدة": "سطح لوضع الشريحة الزجاجية أثناء الفحص.",
+  "مثبت الشريحة": "ملاقط صغيرة تثبّت الشريحة في مكانها على المنضدة.",
+  "الضابطان الكبيران": "لتركيز الصورة بسرعة عند التكبير المنخفض.",
+  "الضابطان الصغيران": "لتحسين دقة التركيز بعد الضبط الأولي.",
+  "المكثف": "يجمع الضوء ويوجهه نحو الشريحة لزيادة الوضوح.",
+  "مصدر الضوء": "يوفر الإضاءة اللازمة لرؤية تفاصيل العينة.",
+  "القاعدة": "تثبّت المجهر وتجعله مستقرًا على الطاولة."
+};
+
+function showPart(name) {
+  document.getElementById('modalTitle').textContent = `وظيفة: ${name}`;
+  document.getElementById('modalText').textContent = PARTS[name] || "لا توجد معلومات لهذا الجزء.";
+  document.getElementById('modal').style.display = 'block';
+  document.getElementById('overlay').style.display = 'block';
+}
+
+function closeModal() {
+  document.getElementById('modal').style.display = 'none';
+  document.getElementById('overlay').style.display = 'none';
+}
+
+// منع النسخ واللصق والزر الأيمن وتصوير الشاشة
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('copy', e => e.preventDefault());
+document.addEventListener('cut', e => e.preventDefault());
+document.addEventListener('paste', e => e.preventDefault());
+document.addEventListener('keydown', e => {
+  if ((e.ctrlKey || e.metaKey) && ['c','v','x','s','p','a'].includes(e.key.toLowerCase())) {
+    e.preventDefault();
+  }
+  if (e.key === 'PrintScreen') {
+    alert('تصوير الشاشة غير مسموح.');
+  }
+});
+</script>
+</body>
+</html>
